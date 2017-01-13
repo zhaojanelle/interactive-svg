@@ -1,26 +1,72 @@
-repo: "interactive-svg"
-canvasCourse: "467503"
-canvasAssignment: "4202401"
+repo: 'interactive-svg'
+canvasCourse: 'web-dev-4'
 
 naming: true
-commits: 2
+restrictFileTypes: true
+liveWebsite: true
+
+git:
+  numCommits: 2
+  allCommitted: true
+  allSynced: true
 
 html:
-  - path: "index.html"
+  - path: 'index.html'
     valid: true
     bestPractices: true
     has:
-      - "svg"
-      - "svg circle"
-      - "svg g"
-      - "svg path"
+      - 'svg'
+      - 'svg circle'
+      - 'svg g'
+      - 'svg path'
+      - ['svg[width]', 'The `width=""` attribute is missing from the `<svg>` tag']
+      - ['svg[height]', 'The `height=""` attribute is missing from the `<svg>` tag']
+      - ['svg[viewBox]', 'The `viewBox=""` attribute is missing from the `<svg>` tag']
+      - ['svg#bear', 'The `<svg>` should have the ID of `#bear`']
+      - '#left-eye'
+      - '#right-eye'
+      - '#nose'
+      - ['g#left-ear', 'The `#left-ear` should be a group (`<g>`) with multiple elements inside it']
+      - ['g#right-ear', 'The `#right-ear` should be a group (`<g>`) with multiple elements inside it']
+      - ['g#face', 'The `#face` should be a group with (`<g>`) multiple elements inside it']
 
 css:
-  - path: "css/main.css"
+  - path: 'css/main.css'
     valid: true
     bestPractices: true
     search:
-      - "@keyframes"
-      - "transform"
-      - "transition"
-      - "animation"
+      - '@keyframes'
+      - 'transform'
+      - 'transition'
+      - 'animation'
+
+screenshots:
+  - path: 'index.html'
+    sizes: [400]
+
+functionality:
+  - path: 'index.html'
+    tests:
+      - |
+        const leftEar = $('#left-ear');
+        const leftEarCss = bounds(leftEar);
+        const rightEar = $('#right-ear');
+        const rightEarCss = bounds(rightEar);
+
+        hover('#bear', function () {
+          if (bounds(leftEar).top == leftEarCss.top) fail('The left ear doesn’t move when the bear is hovered');
+          if (bounds(rightEar).top == rightEarCss.top) fail('The right ear doesn’t move when the bear is hovered');
+          pass();
+        });
+
+      - |
+        const leftEye = $('#left-eye');
+        const leftEyeCss = bounds(leftEye);
+        const rightEye = $('#right-eye');
+        const rightEyeCss = bounds(rightEye);
+
+        setTimeout(function () {
+          if (bounds(leftEye).left == leftEyeCss.left) fail('The left eye doesn’t move with an animation');
+          if (bounds(rightEye).left == rightEyeCss.left) fail('The right eye doesn’t move with an animation');
+          pass();
+        }, 500);
