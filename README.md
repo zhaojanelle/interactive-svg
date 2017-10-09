@@ -2,7 +2,7 @@
 summary: 'Make an embedded SVG graphic with animations & transitions.'
 time: '1 hour'
 deliverables: '1 HTML file, 1 CSS file'
-download: 'https://assets.learn-the-web.algonquindesign.ca/web-dev-4/interactive-svg-download.zip'
+download: 'https://assets.learn-the-web.algonquindesign.ca/web-dev-3/interactive-svg-download.zip'
 ---
 
 # Interactive SVG

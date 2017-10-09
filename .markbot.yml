@@ -1,19 +1,15 @@
 repo: 'interactive-svg'
-canvasCourse: 'web-dev-4'
+canvasCourse: 'web-dev-3'
 
-naming: true
-restrictFileTypes: true
-liveWebsite: true
-
-git:
-  numCommits: 2
-  allCommitted: true
-  allSynced: true
+inherit:
+  - 'naming-restrict-live'
+  - 'git-2'
+  - 'html'
+  - 'css'
 
 html:
   - path: 'index.html'
-    valid: true
-    bestPractices: true
+    outline: false
     has:
       - 'svg'
       - 'svg circle'
@@ -21,7 +17,6 @@ html:
       - 'svg path'
       - ['svg[width]', 'The `width=""` attribute is missing from the `<svg>` tag']
       - ['svg[height]', 'The `height=""` attribute is missing from the `<svg>` tag']
-      - ['svg[viewBox]', 'The `viewBox=""` attribute is missing from the `<svg>` tag']
       - ['svg#bear', 'The `<svg>` should have the ID of `#bear`']
       - '#left-eye'
       - '#right-eye'
@@ -32,8 +27,6 @@ html:
 
 css:
   - path: 'css/main.css'
-    valid: true
-    bestPractices: true
     search:
       - '@keyframes'
       - 'transform'
@@ -48,14 +41,18 @@ functionality:
   - path: 'index.html'
     tests:
       - |
+        // I’d prefer this to be `html.has` but `viewBox` doesn’t work for some reason
+        const svg = $('svg[viewBox]');
+        pass();
+      - |
         const leftEar = $('#left-ear');
         const leftEarCss = bounds(leftEar);
         const rightEar = $('#right-ear');
         const rightEarCss = bounds(rightEar);
 
         hover('#bear', function () {
-          if (bounds(leftEar).top == leftEarCss.top) fail('The left ear doesn’t move when the bear is hovered');
-          if (bounds(rightEar).top == rightEarCss.top) fail('The right ear doesn’t move when the bear is hovered');
+          if (bounds(leftEar).top == leftEarCss.top) return fail('The left ear doesn’t move when the bear is hovered');
+          if (bounds(rightEar).top == rightEarCss.top) return fail('The right ear doesn’t move when the bear is hovered');
           pass();
         });
 
@@ -66,7 +63,7 @@ functionality:
         const rightEyeCss = bounds(rightEye);
 
         setTimeout(function () {
-          if (bounds(leftEye).left == leftEyeCss.left) fail('The left eye doesn’t move with an animation');
-          if (bounds(rightEye).left == rightEyeCss.left) fail('The right eye doesn’t move with an animation');
+          if (bounds(leftEye).left == leftEyeCss.left) return fail('The left eye doesn’t move with an animation');
+          if (bounds(rightEye).left == rightEyeCss.left) return fail('The right eye doesn’t move with an animation');
           pass();
         }, 500);
