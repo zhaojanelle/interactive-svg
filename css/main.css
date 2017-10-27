@@ -1,0 +1,19 @@
+#left-eye {
+  transform: translateX(0);
+  animation: eye-move 1s linear infinite alternate;
+}
+
+#right-eye {
+  transform: translateX(0);
+  animation: eye-move 1s linear infinite alternate;
+}
+
+@keyframes eye-move {
+  0% {
+    transform: translateX(-25);
+  }
+
+  100% {
+    transform: translateX(10px);
+  }
+}
