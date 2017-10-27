@@ -10,7 +10,7 @@
 
 @keyframes eye-move {
   0% {
-    transform: translateX(-25);
+    transform: translateX(-25px);
   }
 
   100% {
