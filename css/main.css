@@ -17,3 +17,23 @@
     transform: translateX(10px);
   }
 }
+
+#left-ear {
+  transform: translateY(0);
+  transform-origin: 46px 58px;
+  transition: all 500ms linear;
+}
+
+#face:hover #left-ear {
+  transform: translateY(-10px);
+}
+
+#right-ear {
+  transform: translateY(0);
+  transform-origin: 4210px 58px;
+  transition: all 500ms linear;
+}
+
+#face:hover #right-ear {
+  transform: translateY(-10px);
+}
